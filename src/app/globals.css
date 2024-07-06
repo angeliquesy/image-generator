@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
+}
+
+html,
+body {
+	min-height: 100vh;
+}
+
+body {
+	background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+	color: rgb(var(--foreground-rgb));
+
+	display: flex;
+	flex-direction: column;
+}
+
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+
+	.text-clip {
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.layout-container {
+		@apply mx-auto w-full max-w-[1000px];
+	}
+
+	/* -- buttons -- */
+
+	.button {
+		@apply px-4 min-w-32 transition flex justify-center items-center min-h-[42px] whitespace-nowrap;
+	}
+
+	.button.primary {
+		@apply bg-sky-950 text-white;
+	}
+
+	.button.secondary {
+		@apply text-sky-100 border-2 border-sky-100;
+	}
+
+	/* :enable won't work on links */
+	.button.primary:not(:disabled) {
+		@apply hover:bg-sky-900 active:bg-sky-950;
+	}
+
+	.button.secondary:not(:disabled) {
+		@apply hover:bg-black-rgba active:border-sky-100;
+	}
+
+	.button .icon {
+		@apply mr-2 h-[20px] w-[20px];
+	}
+}
